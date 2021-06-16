@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func handlerFunc(w http.ResponseWriter, r *http.Request) {
@@ -10,7 +11,10 @@ func handlerFunc(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	port := os.Getenv("PORT")
 	fmt.Println("hi onichan")
 	http.HandleFunc("/", handlerFunc)
-	http.ListenAndServe(":3000", nil)
+	//http.ListenAndServe(":3000", nil)//local machine
+	http.ListenAndServe(port, nil)
 }
