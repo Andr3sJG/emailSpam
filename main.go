@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"os"
+	//"os"
 )
 
 func handlerFunc(w http.ResponseWriter, r *http.Request) {
