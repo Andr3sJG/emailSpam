@@ -12,9 +12,9 @@ func handlerFunc(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	port := os.Getenv("PORT")
+	//port := os.Getenv("PORT")
 	fmt.Println("hi onichan")
 	http.HandleFunc("/", handlerFunc)
 	//http.ListenAndServe(":3000", nil)//local machine
-	http.ListenAndServe(port, nil)
+	//http.ListenAndServe(port, nil)
 }
