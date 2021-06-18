@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"spam.com/controller"
 	"spam.com/service"
+	"os"
 )
 
 func handlerFunc(w http.ResponseWriter, r *http.Request) {
@@ -39,7 +40,8 @@ func main() {
 		viewRoutes.GET("/videos", VideoController.ShowAll)
 	}
 
-server.Run(":8080")
+	port := os.Getenv("PORT")
+	server.Run(":"+port)
 
 	/*port := os.Getenv("PORT")
 	http.HandleFunc("/", handlerFunc)
