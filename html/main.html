@@ -1,5 +1,11 @@
 {{ template "head.html"}}
 
-
-
+<div class="video">
+    {{ range .videos }}
+        <h2> {{ .Title }}</h2>
+        <iframe width="560" height="315" src="{{ .URL }}" 
+        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+    {{ end }}
+</div>
 {{ template "foot.html"}}

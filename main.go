@@ -20,16 +20,26 @@ var (
 
 func main() {
 	server := gin.New()
-	server.Use(gin.Recovery(),gin.Logger())
-	
+	server.Use(gin.Recovery(), gin.Logger())
 
-	server.GET("/test", func(ctx *gin.Context) {
-		ctx.JSON(200, VideoController.FindAll())
-	})
-	server.POST("/test", func(ctx *gin.Context) {
-		ctx.JSON(200, VideoController.Save(ctx))
-	})
-	server.Run(":8080")
+	server.Static("/css", "./css")
+	server.LoadHTMLGlob("html/*.html")
+	apiRoutes := server.Group("/api")
+	{
+		apiRoutes.GET("/test", func(ctx *gin.Context) {
+			ctx.JSON(200, VideoController.FindAll())
+		})
+		apiRoutes.POST("/test", func(ctx *gin.Context) {
+			ctx.JSON(200, VideoController.Save(ctx))
+		})
+	}
+
+	viewRoutes := server.Group("/view")
+	{
+		viewRoutes.GET("/videos", VideoController.ShowAll)
+	}
+
+server.Run(":8080")
 
 	/*port := os.Getenv("PORT")
 	http.HandleFunc("/", handlerFunc)
